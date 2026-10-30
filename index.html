@@ -1,0 +1,1951 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PPIB Staff Mandarin Class 5 - Tarikh dan Masa (Remi lǎoshī)</title>
+    
+    <!-- 引入适合语言教学单层“ɑ”的 Google 字体 Lexend -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            background-color: #FFFDF2;
+            color: #1E293B;
+            padding-top: 85px;
+            user-select: none;
+        }
+
+        /* 专门针对汉语拼音设置的单层手写体 'ɑ' 字体规则 */
+        .pinyin-font, 
+        .gloss-pinyin, 
+        .card-pinyin-huge, 
+        .unit-pinyin-title, 
+        .table-pinyin-black, 
+        .replacement-pinyin-black,
+        .welcome-pinyin {
+            font-family: 'Lexend', 'Century Gothic', 'Comic Sans MS', sans-serif !important;
+        }
+
+        /* 顶部导航菜单 */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background: #FFFFFF;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            z-index: 1000;
+        }
+        .nav-btn {
+            background-color: #F1F5F9;
+            border: 2px solid transparent;
+            border-radius: 40px;
+            padding: 8px 22px;
+            font-size: 18px;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            color: #475569;
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+        }
+        .nav-btn.active {
+            color: #FFFFFF;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.12);
+            transform: scale(1.03);
+        }
+        .tab-btn-intro.active { background-color: #FB7185; }
+        .tab-btn-warm.active { background-color: #FF5E7E; }
+        .tab-btn-date.active { background-color: #10B981; }
+        .tab-btn-time.active { background-color: #0284C7; }
+        .tab-btn-wrap.active { background-color: #8B5CF6; }
+
+        /* 内容容器 */
+        .container {
+            max-width: 1260px;
+            margin: 15px auto 60px auto;
+            padding: 0 20px;
+        }
+        .section-panel {
+            display: none;
+            background: #FFFFFF;
+            border-radius: 35px;
+            padding: 40px;
+            box-shadow: 0 12px 35px rgba(0,0,0,0.05);
+            border: 4px solid #E2E8F0;
+        }
+        .section-panel.active {
+            display: block;
+            animation: fadeIn 0.25s ease;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(6px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .section-title {
+            font-size: 42px;
+            font-weight: 900;
+            margin-bottom: 22px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        /* 英文与马来文字体层级 */
+        .en-text {
+            font-size: 28px;
+            font-weight: 800;
+            color: #0284C7;
+            margin: 5px 0;
+            line-height: 1.3;
+        }
+        .en-brown {
+            font-size: 26px;
+            font-weight: 800;
+            color: #92400E !important;
+            margin: 4px 0;
+            line-height: 1.3;
+        }
+        .my-text {
+            font-size: 21px;
+            color: #94A3B8;
+            font-style: italic;
+            margin-bottom: 8px;
+            line-height: 1.3;
+        }
+
+        /* 互动提示框 */
+        .interactive-card {
+            background: #F8FAFC;
+            border: 3px dashed #CBD5E1;
+            border-radius: 26px;
+            padding: 24px;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+        .reveal-btn {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 10px 28px;
+            font-size: 22px;
+            font-weight: 800;
+            border-radius: 40px;
+            cursor: pointer;
+            margin: 10px 0;
+            box-shadow: 0 4px 12px rgba(255,107,107,0.25);
+            transition: 0.2s;
+        }
+        .reveal-btn:hover {
+            background: #FA5252;
+            transform: scale(1.02);
+        }
+        .hidden-content {
+            display: none;
+            margin-top: 14px;
+            padding-top: 14px;
+            border-top: 2px dashed #CBD5E1;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* 整块灰色空白填空设计 */
+        .answer-blank-container {
+            display: block;
+            background-color: #E2E8F0;
+            border: 3px dashed #CBD5E1;
+            border-radius: 20px;
+            padding: 16px 20px;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            min-height: 82px;
+            margin-bottom: 12px;
+        }
+        .answer-blank-container:hover {
+            background-color: #CBD5E1;
+            transform: translateY(-2px);
+        }
+        .answer-blank-container.revealed {
+            background-color: transparent;
+            border: 3px dashed transparent;
+            padding: 0;
+            cursor: default;
+            transform: none;
+        }
+        .answer-blank-container .hidden-gloss-wrapper {
+            display: none;
+        }
+        .answer-blank-container.revealed .hidden-gloss-wrapper {
+            display: block;
+            animation: fadeIn 0.3s ease;
+        }
+
+        /* 逐字直译容器 (Glossing) */
+        .gloss-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px 16px;
+            align-items: flex-end;
+            margin-bottom: 10px;
+            padding-bottom: 10px;
+            border-bottom: 2px dashed #E2E8F0;
+        }
+        .gloss-pair {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+        .gloss-literal {
+            font-size: 17px;
+            color: #64748B;
+            font-weight: 700;
+            background-color: #F1F5F9;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+        }
+        .gloss-pinyin {
+            font-size: 42px;
+            font-weight: 900;
+            color: #1E293B;
+        }
+
+        /* 核心分色系统 */
+        .c-year { color: #DC2626 !important; font-weight: 900; }
+        .c-month { color: #2563EB !important; font-weight: 900; }
+        .c-day { color: #EA580C !important; font-weight: 900; }
+        .c-week { color: #16A34A !important; font-weight: 900; }
+        .c-clock { color: #9333EA !important; font-weight: 900; }
+        .c-half { color: #EC4899 !important; font-weight: 900; }
+
+        /* 待替换生词荧光黄高亮 */
+        .highlight-replace {
+            background-color: #FEF08A;
+            padding: 2px 8px;
+            border-radius: 6px;
+            color: #1E293B !important;
+            border-bottom: 3px solid #EAB308;
+            font-weight: 900;
+        }
+
+        /* 闪卡通用排版 */
+        .flashcard-grid {
+            display: grid;
+            gap: 16px;
+            margin: 15px 0;
+        }
+        .grid-six { grid-template-columns: repeat(6, 1fr); }
+        .grid-five { grid-template-columns: repeat(5, 1fr); }
+        .grid-four-wide { grid-template-columns: repeat(4, 1fr); }
+        .grid-three { grid-template-columns: repeat(3, 1fr); }
+
+        .flashcard {
+            background-color: transparent;
+            perspective: 1000px;
+            cursor: pointer;
+        }
+        .flashcard.h-small { height: 150px; }
+        .flashcard.h-wide { height: 265px; }
+        .flashcard.h-norm { height: 220px; }
+
+        .card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.5s ease;
+            transform-style: preserve-3d;
+            border-radius: 22px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        .flashcard.flipped .card-inner {
+            transform: rotateY(180deg);
+        }
+        .card-front, .card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            border-radius: 22px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 12px;
+        }
+        .card-front {
+            background: #FFFFFF;
+            border: 3px solid #BAE6FD;
+        }
+        .card-back {
+            background: #FEF9C3;
+            border: 3px solid #FDE047;
+            transform: rotateY(180deg);
+        }
+        .card-pinyin-huge {
+            font-size: 42px;
+            font-weight: 900;
+            color: #DC2626;
+            line-height: 1.1;
+        }
+        .card-rule-tip {
+            font-size: 17px;
+            color: #475569;
+            font-weight: 700;
+            margin: 3px 0 2px 0;
+        }
+        .card-example-bottom {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0284C7;
+            margin-top: 3px;
+        }
+        .back-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 4px;
+        }
+
+        /* 句子卡片与头像排版 */
+        .sentence-card {
+            background: #FFFFFF;
+            border: 3px solid #E2E8F0;
+            border-radius: 24px;
+            padding: 24px;
+            margin: 22px 0;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.03);
+        }
+        .dialogue-turn {
+            display: flex;
+            gap: 16px;
+            align-items: flex-start;
+            margin-bottom: 16px;
+        }
+        .avatar-box {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 95px;
+        }
+        .avatar-icon {
+            font-size: 48px;
+            line-height: 1;
+            margin-bottom: 4px;
+        }
+        .avatar-label {
+            font-size: 17px;
+            font-weight: 800;
+            color: #475569;
+            background: #F1F5F9;
+            padding: 2px 10px;
+            border-radius: 10px;
+            white-space: nowrap;
+        }
+        .dialogue-body {
+            flex: 1;
+        }
+
+        /* 替换词库 (一行 3 个网格排布) */
+        .replacement-tray {
+            background: #F8FAFC;
+            border: 2px dashed #CBD5E1;
+            border-radius: 18px;
+            padding: 20px;
+            margin-top: 14px;
+        }
+        .replacement-title {
+            font-size: 22px;
+            font-weight: 800;
+            color: #334155;
+            margin-bottom: 15px;
+        }
+        .replacement-items-horizontal {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 16px;
+        }
+        .replacement-pill {
+            background: #FFFFFF;
+            border: 2px solid #E2E8F0;
+            padding: 12px 16px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .replacement-pinyin-black {
+            font-size: 24px;
+            font-weight: 900;
+            color: #1E293B !important;
+            margin-bottom: 2px;
+        }
+        .replacement-en-small {
+            font-size: 17px;
+            font-weight: 700;
+            color: #0284C7;
+        }
+        .replacement-my-small {
+            font-size: 15px;
+            color: #94A3B8;
+            font-style: italic;
+        }
+
+        /* The Magic Sentence Formula 语法横幅 */
+        .formula-banner {
+            background: linear-gradient(135deg, #F5F3FF 0%, #EDE9FE 100%);
+            border: 4px dashed #8B5CF6;
+            border-radius: 26px;
+            padding: 24px;
+            text-align: center;
+            margin: 25px 0;
+        }
+        .formula-text {
+            font-size: 38px;
+            font-weight: 900;
+            color: #5B21B6;
+            margin-bottom: 6px;
+        }
+
+        /* 问句对比卡片 */
+        .compare-box-bottom {
+            background: #FFFFFF;
+            border: 4px solid #3B82F6;
+            border-radius: 22px;
+            padding: 22px;
+            margin-top: 30px;
+            box-shadow: 0 6px 18px rgba(59,130,246,0.06);
+        }
+
+        /* Wrap-Up 可视化表格 */
+        .summary-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0 35px 0;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.04);
+        }
+        .summary-table th {
+            font-size: 22px;
+            font-weight: 800;
+            padding: 12px 8px;
+            text-align: center;
+            color: #FFFFFF;
+        }
+        .summary-table td {
+            background: #FFFFFF;
+            padding: 14px 8px;
+            border: 2px solid #EDE9FE;
+            text-align: center;
+            vertical-align: middle;
+        }
+        .table-pinyin-black {
+            font-size: 24px;
+            font-weight: 800;
+            color: #1E293B !important;
+            white-space: nowrap;
+        }
+        /* 时间列在表格中的强调色 (暖橙琥珀色) */
+        .time-col-header {
+            background-color: #D97706 !important;
+        }
+        .time-col-pinyin {
+            color: #C2410C !important;
+            font-weight: 900;
+            font-size: 24px;
+            white-space: nowrap;
+        }
+
+        .svg-icon {
+            width: 42px;
+            height: 42px;
+            margin-bottom: 4px;
+        }
+        .svg-icon-small {
+            width: 36px;
+            height: 36px;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 顶部导航菜单 -->
+    <nav>
+        <button class="nav-btn tab-btn-intro active" onclick="switchTab('tab-intro', this)">👋 Welcome</button>
+        <button class="nav-btn tab-btn-warm" onclick="switchTab('tab-warmup', this)">🎵 Warm-Up</button>
+        <button class="nav-btn tab-btn-date" onclick="switchTab('tab-date', this)">📅 Date</button>
+        <button class="nav-btn tab-btn-time" onclick="switchTab('tab-time', this)">⏰ Time</button>
+        <button class="nav-btn tab-btn-wrap" onclick="switchTab('tab-wrapup', this)">🎯 Wrap-Up</button>
+    </nav>
+
+    <div class="container">
+
+        <!-- ==================== 1. WELCOME & OBJECTIVES ==================== -->
+        <div id="tab-intro" class="section-panel active">
+            <div style="background: linear-gradient(135deg, #FFF1F2 0%, #FFE4E6 100%); border: 4px solid #FDA4AF; border-radius: 30px; padding: 35px; text-align: center; margin-bottom: 30px;">
+                <div style="font-size: 60px; margin-bottom: 8px;">👩🏻‍🏫</div>
+                <div class="welcome-pinyin" style="font-size: 46px; font-weight: 900; color: #E11D48; line-height: 1.25;">
+                    Nǐmen hǎo! Zǎoshang hǎo!
+                </div>
+                <div class="welcome-pinyin" style="font-size: 42px; font-weight: 900; color: #E11D48; line-height: 1.25; margin-bottom: 8px;">
+                    Wǒ shì Remi lǎoshī~
+                </div>
+                <div class="en-text" style="font-size: 28px; color: #0284C7;">
+                    Hello & Good morning! I am Teacher Remi~
+                </div>
+                <div class="my-text" style="font-size: 21px;">
+                    Hai & Selamat pagi semua! Saya Cikgu Remi~
+                </div>
+                <hr style="border: none; border-top: 2px dashed #FDA4AF; margin: 18px 0;">
+                <div style="font-size: 38px; font-weight: 900; color: #9F1239;">
+                    🌟 Today's Theme: Date and Time<span style="display:none;">[cite: 1]</span>
+                </div>
+                <div class="my-text" style="font-size: 21px;">Tema Hari Ini: Tarikh dan Masa<span style="display:none;">[cite: 1]</span></div>
+            </div>
+
+            <!-- 学习目标 -->
+            <div class="en-text" style="font-size: 30px; margin-bottom: 16px;">🎯 Today's Learning Objectives:</div>
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 28px;">
+                <div style="background: #F0FDF4; border: 3px solid #BBF7D0; border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 45px;">📅</div>
+                    <div>
+                        <div class="en-text" style="font-size: 24px; color: #166534;">1. Date Units<span style="display:none;">[cite: 1]</span></div>
+                        <div class="pinyin-font" style="font-size: 23px; font-weight: 800; color: #E11D48;">nián, yuè, hào, xīngqī<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Tahun, bulan, haribulan & hari minggu<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+                <div style="background: #F0F9FF; border: 3px solid #BAE6FD; border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 45px;">⏰</div>
+                    <div>
+                        <div class="en-text" style="font-size: 24px; color: #0369A1;">2. Time Units & Periods<span style="display:none;">[cite: 1]</span></div>
+                        <div class="pinyin-font" style="font-size: 23px; font-weight: 800; color: #E11D48;">diǎn, fēn, bàn & periods<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Pukul, minit, setengah & waktu harian<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+                <div style="background: #FFF7ED; border: 3px solid #FED7AA; border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 45px;">💼</div>
+                    <div>
+                        <div class="en-text" style="font-size: 24px; color: #C2410C;">3. Daily Routines<span style="display:none;">[cite: 1]</span></div>
+                        <div class="pinyin-font" style="font-size: 23px; font-weight: 800; color: #E11D48;">shàngbān, kāihuì, mǎi dōngxi<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Aktiviti rutin harian<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+                <div style="background: #FFFBEB; border: 3px solid #FDE68A; border-radius: 18px; padding: 18px; display: flex; align-items: center; gap: 16px;">
+                    <div style="font-size: 45px;">💬</div>
+                    <div>
+                        <div class="en-text" style="font-size: 24px; color: #B45309;">4. Magic Sentence Formula<span style="display:none;">[cite: 1]</span></div>
+                        <div class="pinyin-font" style="font-size: 23px; font-weight: 800; color: #E11D48;">[Who] + [Time] + [Action]<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Ayat mudah untuk aktiviti harian<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <div style="background: #FEF3C7; border: 3px dashed #F59E0B; border-radius: 22px; padding: 22px; text-align: center;">
+                <div style="font-size: 26px; font-weight: 900; color: #B45309; margin-bottom: 6px;">
+                    💡 Ready to start? Let's check our numbers first!
+                </div>
+                <div class="en-text" style="font-size: 24px; color: #92400E;">
+                    Since everything we learn today relates to numbers, let's first review the numbers 0 - 10!
+                </div>
+                <div class="my-text" style="font-size: 19px; color: #78350F; margin-bottom: 12px;">
+                    Memandangkan semua pembelajaran hari ini berkaitan nombor, mari kita ulang kaji nombor 0 - 10 dahulu!
+                </div>
+                <button class="reveal-btn" style="background: #F59E0B; margin: 0;" onclick="switchTab('tab-warmup', document.querySelectorAll('.nav-btn')[1])">
+                    👉 Go to Warm-Up (Nombor 0 - 10)
+                </button>
+            </div>
+        </div>
+
+        <!-- ==================== 2. WARM-UP ==================== -->
+        <div id="tab-warmup" class="section-panel">
+            <h1 class="section-title" style="color: #FF5E7E;">🎵 Warm-Up: Numbers 0 - 10 Flashcards</h1>
+            
+            <div class="en-text">Click the cards to reveal Pinyin! Practice reading aloud together:</div>
+            <div class="my-text">Klik kad untuk melihat sebutan Pinyin! Mari sebut bersama-sama:</div>
+
+            <div class="flashcard-grid grid-six">
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">0</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">líng</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">1</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">yī<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">2</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">èr<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">3</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">sān<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">4</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">sì<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">5</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">wǔ<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="flashcard-grid grid-five" style="margin-top: 15px;">
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">6</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">liù<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">7</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">qī<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">8</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">bā<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">9</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">jiǔ<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flashcard h-small" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <div style="font-size: 52px; font-weight: 900; color: #0284C7;">10</div>
+                            <div style="font-size: 13px; color: #94A3B8;">👆 flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="pinyin-font" style="font-size: 40px; font-weight: 900; color: #DC2626;">shí<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- YouTube Challenge -->
+            <div style="background: linear-gradient(135deg, #F8FAFC 0%, #F1F5F9 100%); border: 3px solid #CBD5E1; border-radius: 24px; padding: 26px; text-align: center; margin-top: 25px;">
+                <div style="font-size: 30px; font-weight: 900; color: #0284C7; margin-bottom: 6px;">
+                    🥁 Beat Challenge: Say The Numbers 1-10 On Beat Challenge 😉
+                </div>
+                <div class="en-text" style="font-size: 22px; color: #475569; margin-bottom: 18px;">
+                    Listen to the drum beats and say the numbers loudly with the music!
+                </div>
+                <a href="https://youtu.be/A-SEjgmZYdw?si=m5mWwvUzlbv5uPcg" target="_blank" style="display: inline-block; background: #FF5E7E; color: white; text-decoration: none; font-size: 24px; font-weight: 800; padding: 14px 34px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255,94,126,0.3);">
+                    ▶️ Open YouTube Beat Challenge
+                </a>
+            </div>
+        </div>
+
+        <!-- ==================== 3. DATE ==================== -->
+        <div id="tab-date" class="section-panel">
+            <h1 class="section-title" style="color: #10B981;">📅 Date (Tarikh)</h1>
+
+            <!-- 导入问题 -->
+            <div class="interactive-card" style="border-color: #A7F3D0; background: #ECFDF5;">
+                <div class="en-text" style="font-size: 32px;">What is today's date?</div>
+                <div class="my-text" style="font-size: 22px;">Hari ini berapa haribulan?<span style="display:none;">[cite: 1]</span></div>
+                
+                <button class="reveal-btn" onclick="toggleVisibility('date-q1-pinyin')">👆 Click to Reveal Pinyin</button>
+                <div id="date-q1-pinyin" class="hidden-content">
+                    <div class="gloss-container" style="justify-content: center; border-bottom: none;">
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Today]</span>
+                            <span class="gloss-pinyin">Jīntiān</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[which month]</span>
+                            <span class="gloss-pinyin c-month">jǐ yuè</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[which day of month?]</span>
+                            <span class="gloss-pinyin c-day">jǐ hào?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 中英对比 -->
+            <div class="interactive-card">
+                <div class="en-text" style="font-size: 36px;">
+                    <span class="c-week">Friday</span>, <span class="c-day">6th</span> <span class="c-month">November</span>, <span class="c-year">2026</span><span style="display:none;">[cite: 1]</span>
+                </div>
+                <div class="my-text" style="font-size: 22px;">
+                    English Order: Day of Week ➔ Day of Month ➔ Month ➔ Year (Smallest to Largest)<span style="display:none;">[cite: 1]</span>
+                </div>
+
+                <button class="reveal-btn" style="background: #10B981;" onclick="toggleVisibility('date-ans-mandarin')">
+                    👆 Click to Reveal Chinese Order (Big ➔ Small)
+                </button>
+
+                <div id="date-ans-mandarin" class="hidden-content" style="overflow-x: auto;">
+                    <div class="gloss-container" style="justify-content: center; border-bottom: none; margin-bottom: 0;">
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Year 2026]</span>
+                            <span class="gloss-pinyin c-year" style="font-size: 34px;">èr líng èr liù nián</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Month 11]</span>
+                            <span class="gloss-pinyin c-month" style="font-size: 34px;">shíyī yuè</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Day 6]</span>
+                            <span class="gloss-pinyin c-day" style="font-size: 34px;">liù hào,</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Day of Week 5]</span>
+                            <span class="gloss-pinyin c-week" style="font-size: 34px;">xīngqī wǔ</span>
+                        </div>
+                    </div>
+                    <div class="en-text" style="font-size: 24px; color: #047857; margin-top: 15px;">
+                        Chinese Order: Year ➔ Month ➔ Day of Month ➔ Day of Week (Largest to Smallest!)<span style="display:none;">[cite: 1]</span>
+                    </div>
+                    <div class="my-text">Tahun ➔ Bulan ➔ Haribulan ➔ Hari (Paling besar ke paling kecil!)<span style="display:none;">[cite: 1]</span></div>
+                </div>
+            </div>
+
+            <!-- 语序规则可视化卡片 -->
+            <div style="background: #F0FDF4; border: 3px solid #86EFAC; border-radius: 22px; padding: 22px; margin: 25px 0;">
+                <div style="font-size: 26px; font-weight: 900; color: #166534; margin-bottom: 15px; text-align: center;">
+                    💡 Crucial Word Order Rule: [ Number + Unit ] vs [ Day of Week ]<span style="display:none;">[cite: 1]</span>
+                </div>
+                <div style="display: grid; grid-template-columns: 1.1fr 1.1fr; gap: 18px;">
+                    <div style="background: #FFFFFF; border: 2px solid #BBF7D0; border-radius: 16px; padding: 16px;">
+                        <div style="font-size: 20px; font-weight: 900; color: #15803D; margin-bottom: 8px;">
+                            ✅ Standard Rule: Number FIRST, Unit AFTER
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0;">
+                            <span style="background: #DBEAFE; color: #1D4ED8; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">11</span>
+                            <span style="font-weight: 900;">+</span>
+                            <span style="background: #FEE2E2; color: #DC2626; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">yuè</span>
+                            <span style="font-weight: 900;">➔</span>
+                            <span class="pinyin-font c-month" style="font-size: 22px;">shíyī yuè</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0;">
+                            <span style="background: #DBEAFE; color: #1D4ED8; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">6</span>
+                            <span style="font-weight: 900;">+</span>
+                            <span style="background: #FFEDD5; color: #EA580C; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">hào</span>
+                            <span style="font-weight: 900;">➔</span>
+                            <span class="pinyin-font c-day" style="font-size: 22px;">liù hào</span>
+                        </div>
+                        <div class="my-text" style="font-size: 16px; margin: 0;">Nombor dahulu, kemudian unit masa.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+
+                    <div style="background: #FFFBEB; border: 2px solid #FDE68A; border-radius: 16px; padding: 16px;">
+                        <div style="font-size: 20px; font-weight: 900; color: #B45309; margin-bottom: 8px;">
+                            ⚠️ Exception: Day of Week (Unit FIRST!)<span style="display:none;">[cite: 1]</span>
+                        </div>
+                        <div style="display: flex; align-items: center; gap: 8px; margin: 8px 0;">
+                            <span style="background: #DCFCE7; color: #15803D; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">xīngqī</span>
+                            <span style="font-weight: 900;">+</span>
+                            <span style="background: #DBEAFE; color: #1D4ED8; font-weight: 900; font-size: 20px; padding: 4px 10px; border-radius: 8px;">wǔ (5)</span>
+                            <span style="font-weight: 900;">➔</span>
+                            <span class="pinyin-font c-week" style="font-size: 22px;">xīngqī wǔ</span>
+                        </div>
+                        <div class="en-brown" style="font-size: 17px; margin-top: 4px;">
+                            Special: Sunday = <b class="pinyin-font">xīngqītiān</b><span style="display:none;">[cite: 1]</span>
+                        </div>
+                        <div class="my-text" style="font-size: 16px; margin: 0;">Khusus hari: Sebut 'xīngqī' dahulu, baru nombor 1-6.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Date Units & Days 闪卡 -->
+            <div class="en-text" style="font-size: 26px; margin-top: 20px;">Date Units & Days:</div>
+            <div class="flashcard-grid grid-four-wide">
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#DC2626"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                            <div class="en-text">Year</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#DC2626"><path d="M19 4h-1V2h-2v2H8V2H6v2H5c-1.11 0-1.99.9-1.99 2L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg>
+                                <div class="card-pinyin-huge c-year">nián</div>
+                            </div>
+                            <div class="card-rule-tip">💡 Read digit by digit<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Tahun (baca satu persatu)<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">èr líng èr liù nián (2026)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#2563EB"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/></svg>
+                            <div class="en-text">Month</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#2563EB"><path d="M12 3c-4.97 0-9 4.03-9 9s4.03 9 9 9c.83 0 1.5-.67 1.5-1.5 0-.39-.15-.74-.39-1.01-.23-.26-.38-.61-.38-.99 0-.83.67-1.5 1.5-1.5H16c2.76 0 5-2.24 5-5 0-4.42-4.03-8-9-8z"/></svg>
+                                <div class="card-pinyin-huge c-month">yuè</div>
+                            </div>
+                            <div class="card-rule-tip">💡 Numbers 1 - 12<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Bulan (1-12)<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">shíyī yuè (Nov)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#EA580C"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+                            <div class="en-text">Day of Month</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#EA580C"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-7 14l-5-5 1.41-1.41L12 14.17l7.59-7.59L21 8l-9 9z"/></svg>
+                                <div class="card-pinyin-huge c-day">hào</div>
+                            </div>
+                            <div class="card-rule-tip">💡 Numbers 1 - 31<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Haribulan (1-31)<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">liù hào (6th)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#16A34A"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                            <div class="en-text">Day of Week</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#16A34A"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                                <div class="card-pinyin-huge c-week">xīngqī</div>
+                            </div>
+                            <div class="card-rule-tip">💡 1-6 (Sunday = tiān)<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Hari (Ahad: xīngqītiān)<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">xīngqī wǔ (Fri)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Time Reference Days 闪卡 -->
+            <div class="en-text" style="font-size: 26px; margin-top: 15px;">Time Reference Days:</div>
+            <div class="flashcard-grid grid-three">
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#64748B"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+                            <div class="en-text">Yesterday</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#64748B"><path d="M12.5 8c-2.65 0-5.05.99-6.9 2.6L2 7v9h9l-3.62-3.62c1.39-1.16 3.16-1.88 5.12-1.88 3.54 0 6.55 2.31 7.6 5.5l2.37-.78C21.08 11.03 17.15 8 12.5 8z"/></svg>
+                                <div class="card-pinyin-huge">zuótiān</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Yesterday<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Semalam<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2zm0-10h2v8h-2z"/></svg>
+                            <div class="en-text">Today</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#10B981"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 14h2v2h-2zm0-10h2v8h-2z"/></svg>
+                                <div class="card-pinyin-huge">jīntiān</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Today<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Hari ini<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#3B82F6"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                            <div class="en-text">Tomorrow</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#3B82F6"><path d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"/></svg>
+                                <div class="card-pinyin-huge">míngtiān</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Tomorrow<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Esok<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= DATE 例句对话 ================= -->
+            <div class="en-text" style="font-size: 32px; color: #10B981; margin-top: 35px;">💬 Dialogue Practice: Date</div>
+            
+            <!-- 对话 1: 今天几月几号 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[Today]</span>
+                                <span class="gloss-pinyin">Jīntiān</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which month]</span>
+                                <span class="gloss-pinyin c-month">jǐ yuè</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which day of month?]</span>
+                                <span class="gloss-pinyin c-day">jǐ hào?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">What is today's date?</div>
+                        <div class="my-text">Hari ini berapa haribulan?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Month 11]</span>
+                                        <span class="gloss-pinyin c-month">Shíyī yuè</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Day 6]</span>
+                                        <span class="gloss-pinyin c-day">liù hào.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">November 6th.<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">6hb November.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对话 2: 明天星期几 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[Tomorrow]</span>
+                                <span class="gloss-pinyin">Míngtiān</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[day of week]</span>
+                                <span class="gloss-pinyin c-week">xīngqī jǐ?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">What day is tomorrow?</div>
+                        <div class="my-text">Esok hari apa?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Saturday]</span>
+                                        <span class="gloss-pinyin c-week">Xīngqī liù.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">Saturday.</div>
+                        <div class="my-text">Sabtu.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对话 3: 几月几号生日 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[You]</span>
+                                <span class="gloss-pinyin">Nǐ</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which month]</span>
+                                <span class="gloss-pinyin c-month">jǐ yuè</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which day of month]</span>
+                                <span class="gloss-pinyin c-day">jǐ hào</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[birthday?]</span>
+                                <span class="gloss-pinyin">shēngrì?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">When is your birthday?</div>
+                        <div class="my-text">Bila hari jadi kamu?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Month 2]</span>
+                                        <span class="gloss-pinyin c-month">Èr yuè</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Day 4]</span>
+                                        <span class="gloss-pinyin c-day">sì hào,</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[I am 18 years old!]</span>
+                                        <span class="gloss-pinyin">wǒ shíbā suì! 😉</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">February 4th, I am 18 years old! 😉<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">4hb Februari, saya berumur 18 tahun!<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 4. TIME ==================== -->
+        <div id="tab-time" class="section-panel">
+            <h1 class="section-title" style="color: #0284C7;">⏰ Time (Masa)</h1>
+
+            <!-- 导入问题 -->
+            <div class="interactive-card" style="border-color: #BAE6FD; background: #F0F9FF;">
+                <div class="en-text" style="font-size: 32px;">What time is it now?</div>
+                <div class="my-text" style="font-size: 22px;">Sekarang pukul berapa?<span style="display:none;">[cite: 1]</span></div>
+
+                <button class="reveal-btn" onclick="toggleVisibility('time-q1-pinyin')">👆 Click to Reveal Pinyin</button>
+                <div id="time-q1-pinyin" class="hidden-content">
+                    <div class="gloss-container" style="justify-content: center; border-bottom: none;">
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[Now]</span>
+                            <span class="gloss-pinyin">Xiànzài</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[what o'clock?]</span>
+                            <span class="gloss-pinyin c-clock">jǐ diǎn?</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 时间读法对比 -->
+            <div class="interactive-card">
+                <div class="en-text" style="font-size: 36px;">
+                    Half past ten (10:30)
+                </div>
+                <div class="my-text" style="font-size: 22px;">Pukul sepuluh setengah</div>
+
+                <button class="reveal-btn" style="background: #0284C7;" onclick="toggleVisibility('time-ans-mandarin')">
+                    👆 Click to Reveal Chinese Time
+                </button>
+
+                <div id="time-ans-mandarin" class="hidden-content">
+                    <div class="gloss-container" style="justify-content: center; border-bottom: none;">
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[10 o'clock]</span>
+                            <span class="gloss-pinyin c-clock">shí diǎn</span>
+                        </div>
+                        <div class="gloss-pair">
+                            <span class="gloss-literal">[half past]</span>
+                            <span class="gloss-pinyin c-half">bàn</span>
+                        </div>
+                    </div>
+                    <div class="en-brown" style="font-size: 24px; margin-top: 8px;">
+                        <span class="c-clock">diǎn = o'clock</span> | <span class="c-half">bàn = half past (:30)</span><span style="display:none;">[cite: 1]</span>
+                    </div>
+                    <div class="my-text">diǎn = pukul | bàn = setengah (30 minit)<span style="display:none;">[cite: 1]</span></div>
+                </div>
+            </div>
+
+            <!-- 时间闪卡 -->
+            <div class="en-text" style="font-size: 26px; margin-top: 20px;">Time Units & Periods:</div>
+            <div class="flashcard-grid grid-three">
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#9333EA"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                            <div class="en-text">O'clock</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#9333EA"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67z"/></svg>
+                                <div class="card-pinyin-huge c-clock">diǎn</div>
+                            </div>
+                            <div class="card-rule-tip">💡 1-12 (2:00 = liǎng diǎn)<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Pukul (Gunakan 1-12)<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">wǔ diǎn (5:00)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 分 (包含常规 10-59 分与 10 分以下加零) -->
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#10B981"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+                            <div class="en-text">Minute</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#10B981"><path d="M15 1H9v2h6V1zm-4 13h2V8h-2v6zm8.03-6.61l1.42-1.42c-.43-.51-.9-.99-1.41-1.41l-1.42 1.42C16.07 4.74 14.12 4 12 4c-4.97 0-9 4.03-9 9s4.02 9 9 9 9-4.03 9-9c0-2.12-.74-4.07-1.97-5.61zM12 20c-3.87 0-7-3.13-7-7s3.13-7 7-7 7 3.13 7 7-3.13 7-7 7z"/></svg>
+                                <div class="card-pinyin-huge">fēn</div>
+                            </div>
+                            <div class="card-rule-tip">💡 10-59 mins: Nombor + fēn | <span style="color: #DC2626;">&lt;10: Say "líng"</span><span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font" style="font-size: 16px;">
+                                6:15 = liù diǎn shíwǔ fēn<br>
+                                11:08 = shíyī diǎn líng bā fēn<span style="display:none;">[cite: 1]</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#EC4899"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+                            <div class="en-text">Half Past (:30)</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#EC4899"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18V4c4.41 0 8 3.59 8 8s-3.59 8-8 8z"/></svg>
+                                <div class="card-pinyin-huge c-half">bàn</div>
+                            </div>
+                            <div class="card-rule-tip">💡 Exactly 30 minutes<span style="display:none;">[cite: 1]</span>:</div>
+                            <div class="my-text">Setengah / 30 minit<span style="display:none;">[cite: 1]</span></div>
+                            <div class="card-example-bottom pinyin-font">liǎng diǎn bàn (2:30)<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#EA580C"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
+                            <div class="en-text">Morning</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#EA580C"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6z"/></svg>
+                                <div class="card-pinyin-huge">zǎoshang</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Morning<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Pagi<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#D97706"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                            <div class="en-text">Afternoon</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#D97706"><path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zm0-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2z"/></svg>
+                                <div class="card-pinyin-huge">xiàwǔ</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Afternoon<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Petang<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flashcard h-norm" onclick="this.classList.toggle('flipped')">
+                    <div class="card-inner">
+                        <div class="card-front">
+                            <svg class="svg-icon" viewBox="0 0 24 24" fill="#4F46E5"><path d="M9.37 5.51A7.5 7.5 0 0 0 12 20a7.5 7.5 0 0 0 7.49-6.49 9 9 0 1 1-10.12-8z"/></svg>
+                            <div class="en-text">Night</div>
+                            <div style="color: #64748B; font-weight: 700;">👆 Tap to flip</div>
+                        </div>
+                        <div class="card-back">
+                            <div class="back-icon-wrapper">
+                                <svg class="svg-icon-small" viewBox="0 0 24 24" fill="#4F46E5"><path d="M9.37 5.51A7.5 7.5 0 0 0 12 20a7.5 7.5 0 0 0 7.49-6.49 9 9 0 1 1-10.12-8z"/></svg>
+                                <div class="card-pinyin-huge">wǎnshang</div>
+                            </div>
+                            <div class="en-text" style="font-size: 22px;">Night<span style="display:none;">[cite: 1]</span></div>
+                            <div class="my-text">Malam<span style="display:none;">[cite: 1]</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ================= THE MAGIC SENTENCE FORMULA ================= -->
+            <div class="formula-banner">
+                <div class="formula-text">
+                    [ WHO ] + <span style="color: #9333EA; text-decoration: underline;">[ TIME ]</span> + [ ACTION ]<span style="display:none;">[cite: 1]</span>
+                </div>
+                <div class="en-text" style="font-size: 24px; color: #6D28D9;">
+                    ⚠️ TIME always comes <b>BEFORE</b> the Action/Verb!<span style="display:none;">[cite: 1]</span>
+                </div>
+                <div class="my-text" style="font-size: 20px; color: #7C3AED;">
+                    KATA MASA mesti diletakkan SEBELUM kata kerja!<span style="display:none;">[cite: 1]</span>
+                </div>
+            </div>
+
+            <!-- ================= TIME 例句互动 ================= -->
+            <div class="en-text" style="font-size: 32px; color: #0284C7; margin-top: 30px;">💬 Dialogue Practice: Time & Daily Routines</div>
+
+            <!-- 对话 1: 你们等下几点上课 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[You all]</span>
+                                <span class="gloss-pinyin">Nǐmen</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[later]</span>
+                                <span class="gloss-pinyin">děngxià</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[what time]</span>
+                                <span class="gloss-pinyin c-clock">jǐ diǎn</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[attend class?]</span>
+                                <span class="gloss-pinyin"><span class="highlight-replace">shàngkè</span>?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">What time is your class later?</div>
+                        <div class="my-text">Kamu semua nanti pukul berapa masuk kelas?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[11 o'clock]</span>
+                                        <span class="gloss-pinyin c-clock">Shíyī diǎn.</span>
+                                    </div>
+                                    <span class="gloss-pinyin" style="font-size: 32px; margin: 0 4px;">/</span>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[We]</span>
+                                        <span class="gloss-pinyin">Wǒmen</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[not have]</span>
+                                        <span class="gloss-pinyin">méiyǒu</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[class]</span>
+                                        <span class="gloss-pinyin">kè.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">11:00 / We don't have class.<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Pukul 11:00 / Kami tiada kelas.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <!-- 替换词库：每行 3 个 -->
+                <div class="replacement-tray">
+                    <div class="replacement-title">🔄 Try replacing <span class="highlight-replace">shàngkè</span> with:</div>
+                    <div class="replacement-items-horizontal">
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">xiàkè<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">finish class</span>
+                            <span class="replacement-my-small">habis kelas<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">shàngbān<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">go to work</span>
+                            <span class="replacement-my-small">masuk kerja<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">xiàbān<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">finish work</span>
+                            <span class="replacement-my-small">habis kerja<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">kāihuì<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">have meeting</span>
+                            <span class="replacement-my-small">mesyuarat<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">chīfàn<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">eat meal</span>
+                            <span class="replacement-my-small">makan<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对话 2: 我们几点去买东西 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[We]</span>
+                                <span class="gloss-pinyin">Wǒmen</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[what time]</span>
+                                <span class="gloss-pinyin c-clock">jǐ diǎn</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[go]</span>
+                                <span class="gloss-pinyin">qù</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[buy]</span>
+                                <span class="gloss-pinyin"><span class="highlight-replace" style="border: none;">mǎi</span></span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[things?]</span>
+                                <span class="gloss-pinyin"><span class="highlight-replace">dōngxi</span>?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">What time are we going shopping?</div>
+                        <div class="my-text">Kita pukul berapa pergi beli barang?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Night]</span>
+                                        <span class="gloss-pinyin">Wǎnshang</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[7 o'clock]</span>
+                                        <span class="gloss-pinyin c-clock">qī diǎn.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">7:00 p.m. at night.<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Pukul 7:00 malam.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <!-- 替换词库：每行 3 个 -->
+                <div class="replacement-tray">
+                    <div class="replacement-title">🔄 Try replacing <span class="highlight-replace">mǎi dōngxi</span> with:</div>
+                    <div class="replacement-items-horizontal">
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">hē chá / kāfēi / nǎichá<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">drink tea / coffee / milk tea</span>
+                            <span class="replacement-my-small">minum teh / kopi / teh susu<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">guàngjiē<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">shopping</span>
+                            <span class="replacement-my-small">membeli-belah<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">chī zǎocān / wǔcān / wǎncān<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">eat breakfast / lunch / dinner</span>
+                            <span class="replacement-my-small">makan sarapan / tengah hari / malam<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 对话 3: 你什么时候有会议 -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[You]</span>
+                                <span class="gloss-pinyin">Nǐ</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[when]</span>
+                                <span class="gloss-pinyin" style="color: #16A34A; font-weight: 900;">shénme shíhou</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[have]</span>
+                                <span class="gloss-pinyin">yǒu</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[meeting?]</span>
+                                <span class="gloss-pinyin"><span class="highlight-replace">huìyì</span>?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">When do you have a meeting?</div>
+                        <div class="my-text">Kamu bila ada mesyuarat?<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Monday]</span>
+                                        <span class="gloss-pinyin c-week">Xīngqī yī</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[morning]</span>
+                                        <span class="gloss-pinyin">zǎoshang</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[9 o'clock]</span>
+                                        <span class="gloss-pinyin c-clock">jiǔ diǎn.</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">Monday morning at 9:00.<span style="display:none;">[cite: 1]</span></div>
+                        <div class="my-text">Isnin pagi pukul 9:00.<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+
+                <!-- 替换词库：每行 3 个 -->
+                <div class="replacement-tray">
+                    <div class="replacement-title">🔄 Try replacing <span class="highlight-replace">huìyì</span> with:</div>
+                    <div class="replacement-items-horizontal">
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">jiǎngzuò<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">speech / talk</span>
+                            <span class="replacement-my-small">ceramah<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                        <div class="replacement-pill">
+                            <span class="replacement-pinyin-black pinyin-font">yántǎohuì<span style="display:none;">[cite: 1]</span></span>
+                            <span class="replacement-en-small">conference / seminar</span>
+                            <span class="replacement-my-small">persidangan<span style="display:none;">[cite: 1]</span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 💡 Quick Guide -->
+            <div class="compare-box-bottom">
+                <div style="font-size: 28px; font-weight: 900; color: #1E293B; margin-bottom: 14px;">
+                    💡 Quick Guide: Key Difference
+                </div>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 18px;">
+                    <div style="background: #FDF4FF; border-left: 8px solid #9333EA; padding: 18px; border-radius: 16px;">
+                        <div class="pinyin-font" style="font-size: 34px; font-weight: 900; color: #9333EA;">jǐ diǎn</div>
+                        <div class="en-brown" style="font-size: 22px;">
+                            👉 Asks specifically for <b>CLOCK TIME</b> (Numbers)!<span style="display:none;">[cite: 1]</span>
+                        </div>
+                        <div class="my-text" style="font-size: 19px;">Khusus tanya <b>pukul berapa</b> (nombor jam: 7:00, 10:30)<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                    <div style="background: #F0FDF4; border-left: 8px solid #16A34A; padding: 18px; border-radius: 16px;">
+                        <div class="pinyin-font" style="font-size: 34px; font-weight: 900; color: #16A34A;">shénme shíhou</div>
+                        <div class="en-brown" style="font-size: 22px;">
+                            👉 General question for <b>"WHEN"</b> (Day, date, or period)!<span style="display:none;">[cite: 1]</span>
+                        </div>
+                        <div class="my-text" style="font-size: 19px;">Tanya <b>bila secara umum</b> (hari, tarikh, waktu)<span style="display:none;">[cite: 1]</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ==================== 5. WRAP-UP ==================== -->
+        <div id="tab-wrapup" class="section-panel">
+            <h1 class="section-title" style="color: #8B5CF6;">🎯 Wrap-Up & Summary</h1>
+
+            <!-- 1. 陈述句总结表 -->
+            <div class="en-text" style="font-size: 28px;">1. The Magic Sentence Formula Summary Table:</div>
+            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Jadual Rumusan Formula Ayat Masa:</div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th style="width: 12%; background-color: #8B5CF6;">WHO<br><span style="font-size: 15px; font-weight: normal;">Subjek</span></th>
+                        <th style="width: 32%;" class="time-col-header">DATE / DAY<br><span style="font-size: 15px; font-weight: normal;">Tarikh / Hari</span></th>
+                        <th style="width: 16%;" class="time-col-header">TIME PERIOD<br><span style="font-size: 15px; font-weight: normal;">Waktu</span></th>
+                        <th style="width: 16%;" class="time-col-header">CLOCK TIME<br><span style="font-size: 15px; font-weight: normal;">Jam</span></th>
+                        <th style="width: 24%; background-color: #8B5CF6;">ACTION<br><span style="font-size: 15px; font-weight: normal;">Aktiviti</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Wǒ</div>
+                            <div class="en-brown" style="font-size: 17px;">I<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">shí'èr yuè shí'èr hào xīngqīsān</div>
+                            <div class="en-brown" style="font-size: 17px;">Dec 12, Wed</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">zǎoshang</div>
+                            <div class="en-brown" style="font-size: 17px;">morning<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">-</div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">yǒu yántǎohuì.</div>
+                            <div class="en-brown" style="font-size: 17px;">have conference.<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Tāmen</div>
+                            <div class="en-brown" style="font-size: 17px;">They</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">míngtiān</div>
+                            <div class="en-brown" style="font-size: 17px;">tomorrow<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">xiàwǔ</div>
+                            <div class="en-brown" style="font-size: 17px;">afternoon<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">sān diǎn bàn</div>
+                            <div class="en-brown" style="font-size: 17px;">3:30<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">qù hē kāfēi.</div>
+                            <div class="en-brown" style="font-size: 17px;">go drink coffee.<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Wǒ</div>
+                            <div class="en-brown" style="font-size: 17px;">I<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">děngxià</div>
+                            <div class="en-brown" style="font-size: 17px;">later<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">-</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">qī diǎn</div>
+                            <div class="en-brown" style="font-size: 17px;">7:00</div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">chī wǎncān.</div>
+                            <div class="en-brown" style="font-size: 17px;">eat dinner.<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 2. 问句短语总览表 -->
+            <div class="en-text" style="font-size: 28px; margin-top: 30px;">2. Question Patterns Summary:</div>
+            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Jadual Corak Ayat Tanya:</div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%; background-color: #0284C7;">Question Target<br><span style="font-size: 15px; font-weight: normal;">Tanya Apa</span></th>
+                        <th style="width: 65%; background-color: #0284C7;">Question Pattern & Meaning<br><span style="font-size: 15px; font-weight: normal;">Frasa Soalan & Maksud</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Date (Tarikh)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-month">jǐ yuè</span> <span class="c-day">jǐ hào</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What date?</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Berapa haribulan?<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Day of Week (Hari)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-week">xīngqī jǐ</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What day of the week?</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Hari apa?<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Clock Time (Jam)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-clock">jǐ diǎn</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What time? (Clock time)</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Pukul berapa?<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">General Time (Bila)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px; color: #16A34A !important;">shénme shíhou?</div>
+                            <div class="en-brown" style="font-size: 20px;">When? (General)</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Bila?<span style="display:none;">[cite: 1]</span></div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 3. 生词总览表 -->
+            <div class="en-text" style="font-size: 28px; margin-top: 30px;">3. Vocabulary Summary:</div>
+            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Senarai Penuh Kosa Kata:</div>
+
+            <table class="summary-table" style="margin-top: 10px;">
+                <thead>
+                    <tr>
+                        <th style="width: 25%; background-color: #10B981;">Category (Kategori)</th>
+                        <th style="width: 25%; background-color: #10B981;">Pinyin</th>
+                        <th style="width: 25%; background-color: #10B981;">English</th>
+                        <th style="width: 25%; background-color: #10B981;">Malay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td rowspan="4" style="font-weight: 800; color: #475569; font-size: 20px;">Date Units (Tarikh)<span style="display:none;">[cite: 1]</span></td>
+                        <td class="table-pinyin-black pinyin-font">nián</td>
+                        <td class="en-brown" style="font-size: 19px;">year</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">tahun<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">yuè</td>
+                        <td class="en-brown" style="font-size: 19px;">month</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">bulan<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">hào</td>
+                        <td class="en-brown" style="font-size: 19px;">day of month</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">haribulan<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">xīngqī</td>
+                        <td class="en-brown" style="font-size: 19px;">day of week</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">hari minggu<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="3" style="font-weight: 800; color: #475569; font-size: 20px;">Time Units (Masa)<span style="display:none;">[cite: 1]</span></td>
+                        <td class="table-pinyin-black pinyin-font">diǎn</td>
+                        <td class="en-brown" style="font-size: 19px;">o'clock</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">pukul<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">fēn</td>
+                        <td class="en-brown" style="font-size: 19px;">minute</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">minit<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">bàn</td>
+                        <td class="en-brown" style="font-size: 19px;">half past</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">setengah<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="3" style="font-weight: 800; color: #475569; font-size: 20px;">Periods (Waktu)<span style="display:none;">[cite: 1]</span></td>
+                        <td class="table-pinyin-black pinyin-font">zǎoshang</td>
+                        <td class="en-brown" style="font-size: 19px;">morning</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">pagi<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">xiàwǔ</td>
+                        <td class="en-brown" style="font-size: 19px;">afternoon</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">petang<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">wǎnshang</td>
+                        <td class="en-brown" style="font-size: 19px;">night</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">malam<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="5" style="font-weight: 800; color: #475569; font-size: 20px;">Time Words (Kata Masa)<span style="display:none;">[cite: 1]</span></td>
+                        <td class="table-pinyin-black pinyin-font">zuótiān</td>
+                        <td class="en-brown" style="font-size: 19px;">yesterday</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">semalam<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">jīntiān</td>
+                        <td class="en-brown" style="font-size: 19px;">today</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">hari ini<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">míngtiān</td>
+                        <td class="en-brown" style="font-size: 19px;">tomorrow</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">esok<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">xiànzài</td>
+                        <td class="en-brown" style="font-size: 19px;">now</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">sekarang<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">děngxià</td>
+                        <td class="en-brown" style="font-size: 19px;">later</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">nanti<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+
+                    <tr>
+                        <td style="font-weight: 800; color: #475569; font-size: 20px;">Age (Umur)</td>
+                        <td class="table-pinyin-black pinyin-font">suì</td>
+                        <td class="en-brown" style="font-size: 19px;">years old</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">tahun (umur)</td>
+                    </tr>
+
+                    <tr>
+                        <td rowspan="12" style="font-weight: 800; color: #475569; font-size: 20px;">Daily Routines & Actions (Aktiviti Harian)<span style="display:none;">[cite: 1]</span></td>
+                        <td class="table-pinyin-black pinyin-font">yǒu</td>
+                        <td class="en-brown" style="font-size: 19px;">have</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">ada<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">qù</td>
+                        <td class="en-brown" style="font-size: 19px;">go</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">pergi<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">shàngbān / xiàbān</td>
+                        <td class="en-brown" style="font-size: 19px;">go to work / finish work</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">masuk kerja / habis kerja<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">shàngkè / xiàkè</td>
+                        <td class="en-brown" style="font-size: 19px;">attend class / finish class</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">masuk kelas / habis kelas<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">kāihuì / huìyì</td>
+                        <td class="en-brown" style="font-size: 19px;">have meeting / meeting</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">mesyuarat<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">jiǎngzuò / yántǎohuì</td>
+                        <td class="en-brown" style="font-size: 19px;">talk / conference</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">ceramah / persidangan<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">chī</td>
+                        <td class="en-brown" style="font-size: 19px;">eat</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">makan<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">zǎocān / wǔcān / wǎncān</td>
+                        <td class="en-brown" style="font-size: 19px;">breakfast / lunch / dinner</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">sarapan / tengah hari / malam<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">hē</td>
+                        <td class="en-brown" style="font-size: 19px;">drink</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">minum<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">chá / kāfēi / nǎichá</td>
+                        <td class="en-brown" style="font-size: 19px;">tea / coffee / milk tea</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">teh / kopi / teh susu<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">chīfàn</td>
+                        <td class="en-brown" style="font-size: 19px;">have a meal</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">makan nasi / makan<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                    <tr>
+                        <td class="table-pinyin-black pinyin-font">guàngjiē / mǎi dōngxi</td>
+                        <td class="en-brown" style="font-size: 19px;">shopping / buy things</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">membeli-belah / beli barang<span style="display:none;">[cite: 1]</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 结束语 -->
+            <div style="text-align: center; margin-top: 35px; padding: 25px; background: #FFFBEB; border-radius: 24px; border: 3px dashed #FCD34D;">
+                <div class="pinyin-font" style="font-size: 28px; font-weight: 900; color: #D97706; margin-bottom: 8px;">
+                    🎉 Xièxiè nǐmen! Nǐmen jīntiān hěn bàng! 🎉
+                </div>
+                <div class="en-brown" style="font-size: 22px;">Thank you all! You were amazing today!</div>
+                <div class="my-text" style="font-size: 18px;">Terima kasih semua! Kamu sangat hebat hari ini!</div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- 交互脚本 -->
+    <script>
+        function switchTab(tabId, btnElement) {
+            document.querySelectorAll('.section-panel').forEach(panel => {
+                panel.classList.remove('active');
+            });
+            document.querySelectorAll('.nav-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            if (btnElement) {
+                btnElement.classList.add('active');
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function toggleVisibility(id) {
+            const el = document.getElementById(id);
+            if (el.style.display === 'block') {
+                el.style.display = 'none';
+            } else {
+                el.style.display = 'block';
+            }
+        }
+    </script>
+</body>
+</html>
