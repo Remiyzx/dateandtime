@@ -21,7 +21,7 @@
             background-color: #FFFDF2;
             color: #1E293B;
             padding-top: 85px;
-            user-select: none;
+            /* 允许鼠标全选与高亮 */
         }
 
         /* 专门针对汉语拼音设置的单层手写体 'ɑ' 字体规则 */
@@ -129,6 +129,17 @@
             margin-bottom: 8px;
             line-height: 1.3;
         }
+        
+        .tip-text-small {
+            font-size: 19px;
+            font-weight: 700;
+            color: #475569;
+            margin-top: 10px;
+            background: #F1F5F9;
+            padding: 10px 15px;
+            border-left: 5px solid #0284C7;
+            border-radius: 6px;
+        }
 
         /* 互动提示框 */
         .interactive-card {
@@ -184,7 +195,7 @@
             background-color: transparent;
             border: 3px dashed transparent;
             padding: 0;
-            cursor: default;
+            cursor: text;
             transform: none;
         }
         .answer-blank-container .hidden-gloss-wrapper {
@@ -315,6 +326,13 @@
             font-weight: 800;
             color: #0284C7;
             margin-top: 3px;
+        }
+        .back-icon-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 4px;
         }
 
         /* 句子卡片与头像排版 */
@@ -1115,6 +1133,7 @@
                 </div>
             </div>
 
+            <!-- 时间点与分闪卡 -->
             <div class="flashcard-grid grid-three" style="margin-top: 15px;">
                 <div class="flashcard h-wide" onclick="this.classList.toggle('flipped')">
                     <div class="card-inner">
@@ -1179,11 +1198,12 @@
 
         <!-- ==================== 4. SCHEDULE DIALOGUES ==================== -->
         <div id="tab-dialogues" class="section-panel">
-            <h1 class="section-title" style="color: #10B981;">💬 Schedule Dialogues (Shíjiānbiǎo Wèndá)</h1>
+            <h1 class="section-title" style="color: #10B981;">💬 Schedule Dialogues</h1>
             
             <div class="en-text">Look at the Schedule! Let's ask Remi Laoshi and answer as colleagues:</div>
             <div class="my-text">Lihat jadual di atas! Mari amalkan soalan dan jawapan berasaskan jadual:</div>
 
+            <!-- 问题 1: 今天几月几号？ -->
             <div class="sentence-card">
                 <div class="dialogue-turn">
                     <div class="avatar-box">
@@ -1236,6 +1256,7 @@
                 </div>
             </div>
 
+            <!-- 问题 2: 明天星期几？ -->
             <div class="sentence-card">
                 <div class="dialogue-turn">
                     <div class="avatar-box">
@@ -1279,7 +1300,69 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- 问题 3: 几月几号生日？ -->
+            <div class="sentence-card">
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">👩🏻‍🏫</div>
+                        <div class="avatar-label">Remi lǎoshī</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="gloss-container">
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[You]</span>
+                                <span class="gloss-pinyin">Nǐ</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which month]</span>
+                                <span class="gloss-pinyin c-month">jǐ yuè</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[which day of month]</span>
+                                <span class="gloss-pinyin c-day">jǐ hào</span>
+                            </div>
+                            <div class="gloss-pair">
+                                <span class="gloss-literal">[birthday?]</span>
+                                <span class="gloss-pinyin">shēngrì?</span>
+                            </div>
+                        </div>
+                        <div class="en-brown">When is your birthday? (Schedule says: Sunday friend's 30th birthday!)</div>
+                        <div class="my-text">Bila hari jadi kamu?</div>
+                    </div>
+                </div>
 
+                <div class="dialogue-turn">
+                    <div class="avatar-box">
+                        <div class="avatar-icon">🧑🏻‍💼</div>
+                        <div class="avatar-label">wǒ</div>
+                    </div>
+                    <div class="dialogue-body">
+                        <div class="answer-blank-container" onclick="this.classList.add('revealed')">
+                            <div class="hidden-gloss-wrapper">
+                                <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Month 2]</span>
+                                        <span class="gloss-pinyin c-month">Èr yuè</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[Day 4]</span>
+                                        <span class="gloss-pinyin c-day">sì hào,</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[I am 18 years old!]</span>
+                                        <span class="gloss-pinyin">wǒ shíbā suì! 😉</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="en-brown">February 4th, I am 18 years old! 😉</div>
+                        <div class="my-text">4hb Februari, saya berumur 18 tahun!</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 问题 4: 你们等下几点上课？ -->
             <div class="sentence-card">
                 <div class="dialogue-turn">
                     <div class="avatar-box">
@@ -1320,18 +1403,31 @@
                             <div class="hidden-gloss-wrapper">
                                 <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
                                     <div class="gloss-pair">
-                                        <span class="gloss-literal">[11 o'clock]</span>
-                                        <span class="gloss-pinyin c-clock">Shíyī diǎn</span>
+                                        <span class="gloss-literal">[11 o'clock.]</span>
+                                        <span class="gloss-pinyin c-clock">Shíyī diǎn.</span>
+                                    </div>
+                                    <span class="gloss-pinyin" style="font-size: 32px; margin: 0 4px;">/</span>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[We]</span>
+                                        <span class="gloss-pinyin">Wǒmen</span>
                                     </div>
                                     <div class="gloss-pair">
-                                        <span class="gloss-literal">[attend class.]</span>
-                                        <span class="gloss-pinyin">shàngkè.</span>
+                                        <span class="gloss-literal">[later]</span>
+                                        <span class="gloss-pinyin">děngxià</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[not have]</span>
+                                        <span class="gloss-pinyin">méiyǒu</span>
+                                    </div>
+                                    <div class="gloss-pair">
+                                        <span class="gloss-literal">[class]</span>
+                                        <span class="gloss-pinyin">kè.</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="en-brown">Attend class at 11:00. (Friday 11:00 on schedule)</div>
-                        <div class="my-text">Masuk kelas pada pukul 11:00.</div>
+                        <div class="en-brown">11:00. / We don't have class later.</div>
+                        <div class="my-text">Pukul 11:00. / Kami tiada kelas nanti.</div>
                     </div>
                 </div>
 
@@ -1371,7 +1467,14 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="tip-text-small">
+                💡 <b>Note on questions:</b> 
+                Use <b>"jǐ diǎn"</b> to ask for a specific clock time (e.g. 9:00, 2:30). 
+                Use <b>"shénme shíhou"</b> to ask for a general time (e.g. which day, tomorrow morning).
+            </div>
 
+            <!-- 问题 5: 你什么时候有会议？ -->
             <div class="sentence-card">
                 <div class="dialogue-turn">
                     <div class="avatar-box">
@@ -1452,7 +1555,13 @@
                     </div>
                 </div>
             </div>
-
+            
+            <div class="tip-text-small">
+                💡 <b>Note on "zuò shénme":</b> 
+                "zuò shénme" means "do what". You should answer by giving an <b>action</b> (e.g. have meeting, go shopping).
+            </div>
+            
+            <!-- 问题 6: 你星期二做什么？ -->
             <div class="sentence-card">
                 <div class="dialogue-turn">
                     <div class="avatar-box">
@@ -1466,20 +1575,20 @@
                                 <span class="gloss-pinyin">Nǐ</span>
                             </div>
                             <div class="gloss-pair">
-                                <span class="gloss-literal">[which month]</span>
-                                <span class="gloss-pinyin c-month">jǐ yuè</span>
+                                <span class="gloss-literal">[Tuesday]</span>
+                                <span class="gloss-pinyin c-week">xīngqī èr</span>
                             </div>
                             <div class="gloss-pair">
-                                <span class="gloss-literal">[which day of month]</span>
-                                <span class="gloss-pinyin c-day">jǐ hào</span>
+                                <span class="gloss-literal">[do]</span>
+                                <span class="gloss-pinyin">zuò</span>
                             </div>
                             <div class="gloss-pair">
-                                <span class="gloss-literal">[birthday?]</span>
-                                <span class="gloss-pinyin">shēngrì?</span>
+                                <span class="gloss-literal">[what?]</span>
+                                <span class="gloss-pinyin">shénme?</span>
                             </div>
                         </div>
-                        <div class="en-brown">When is your birthday? (Schedule says: Sunday friend's 30th birthday!)</div>
-                        <div class="my-text">Bila hari jadi kamu?</div>
+                        <div class="en-brown">What do you do on Tuesday?</div>
+                        <div class="my-text">Kamu buat apa pada hari Selasa?</div>
                     </div>
                 </div>
 
@@ -1493,22 +1602,18 @@
                             <div class="hidden-gloss-wrapper">
                                 <div class="gloss-container" style="border-bottom: none; padding-bottom: 0;">
                                     <div class="gloss-pair">
-                                        <span class="gloss-literal">[Month 2]</span>
-                                        <span class="gloss-pinyin c-month">Èr yuè</span>
+                                        <span class="gloss-literal">[Have]</span>
+                                        <span class="gloss-pinyin">Yǒu</span>
                                     </div>
                                     <div class="gloss-pair">
-                                        <span class="gloss-literal">[Day 4]</span>
-                                        <span class="gloss-pinyin c-day">sì hào,</span>
-                                    </div>
-                                    <div class="gloss-pair">
-                                        <span class="gloss-literal">[I am 18 years old!]</span>
-                                        <span class="gloss-pinyin">wǒ shíbā suì! 😉</span>
+                                        <span class="gloss-literal">[conference.]</span>
+                                        <span class="gloss-pinyin">yántǎohuì.</span>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="en-brown">February 4th, I am 18 years old! 😉</div>
-                        <div class="my-text">4hb Februari, saya berumur 18 tahun!</div>
+                        <div class="en-brown">Have conference.</div>
+                        <div class="my-text">Ada persidangan.</div>
                     </div>
                 </div>
             </div>
@@ -1518,139 +1623,11 @@
         <div id="tab-wrapup" class="section-panel">
             <h1 class="section-title" style="color: #8B5CF6;">🎯 Wrap-Up & Summary</h1>
 
-            <div class="en-text" style="font-size: 28px;">1. The Magic Sentence Formula Summary Table:</div>
-            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Jadual Rumusan Formula Ayat Masa (Berasaskan Jadual):</div>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th style="width: 12%; background-color: #8B5CF6;">WHO<br><span style="font-size: 15px; font-weight: normal;">Subjek</span></th>
-                        <th style="width: 32%;" class="time-col-header">DATE / DAY<br><span style="font-size: 15px; font-weight: normal;">Tarikh / Hari</span></th>
-                        <th style="width: 16%;" class="time-col-header">TIME PERIOD<br><span style="font-size: 15px; font-weight: normal;">Waktu</span></th>
-                        <th style="width: 16%;" class="time-col-header">CLOCK TIME<br><span style="font-size: 15px; font-weight: normal;">Jam</span></th>
-                        <th style="width: 24%; background-color: #8B5CF6;">ACTION<br><span style="font-size: 15px; font-weight: normal;">Aktiviti</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">Wǒ</div>
-                            <div class="en-brown" style="font-size: 17px;">I</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">xīngqīsì (zuótiān)</div>
-                            <div class="en-brown" style="font-size: 17px;">Thursday</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">zǎoshang</div>
-                            <div class="en-brown" style="font-size: 17px;">morning</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">bā diǎn bàn</div>
-                            <div class="en-brown" style="font-size: 17px;">8:30</div>
-                        </td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">shàngbān.</div>
-                            <div class="en-brown" style="font-size: 17px;">go to work.</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">Wǒmen</div>
-                            <div class="en-brown" style="font-size: 17px;">We</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">xīngqī wǔ (jīntiān)</div>
-                            <div class="en-brown" style="font-size: 17px;">Friday (Today)</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">zǎoshang</div>
-                            <div class="en-brown" style="font-size: 17px;">morning</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">shíyī diǎn</div>
-                            <div class="en-brown" style="font-size: 17px;">11:00</div>
-                        </td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">shàngkè.</div>
-                            <div class="en-brown" style="font-size: 17px;">attend class.</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">Tā</div>
-                            <div class="en-brown" style="font-size: 17px;">He / She</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">xīngqī tiān</div>
-                            <div class="en-brown" style="font-size: 17px;">Sunday</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">wǎnshang</div>
-                            <div class="en-brown" style="font-size: 17px;">night</div>
-                        </td>
-                        <td>
-                            <div class="time-col-pinyin pinyin-font">qī diǎn bàn</div>
-                            <div class="en-brown" style="font-size: 17px;">7:30</div>
-                        </td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font">qù péngyou shēngrì.</div>
-                            <div class="en-brown" style="font-size: 17px;">go to friend's bday.</div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="en-text" style="font-size: 28px; margin-top: 30px;">2. Question Patterns Summary:</div>
-            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Jadual Corak Ayat Tanya:</div>
-
-            <table class="summary-table">
-                <thead>
-                    <tr>
-                        <th style="width: 35%; background-color: #0284C7;">Question Target<br><span style="font-size: 15px; font-weight: normal;">Tanya Apa</span></th>
-                        <th style="width: 65%; background-color: #0284C7;">Question Pattern & Meaning<br><span style="font-size: 15px; font-weight: normal;">Frasa Soalan & Maksud</span></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Date (Tarikh)</td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-month">jǐ yuè</span> <span class="c-day">jǐ hào</span>?</div>
-                            <div class="en-brown" style="font-size: 20px;">What date?</div>
-                            <div class="my-text" style="font-size: 17px; margin: 0;">Berapa haribulan?</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Day of Week (Hari)</td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-week">xīngqī jǐ</span>?</div>
-                            <div class="en-brown" style="font-size: 20px;">What day of the week?</div>
-                            <div class="my-text" style="font-size: 17px; margin: 0;">Hari apa?</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Clock Time (Jam)</td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-clock">jǐ diǎn</span>?</div>
-                            <div class="en-brown" style="font-size: 20px;">What time? (Clock time)</div>
-                            <div class="my-text" style="font-size: 17px; margin: 0;">Pukul berapa?</div>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">General Time (Bila)</td>
-                        <td>
-                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px; color: #16A34A !important;">shénme shíhou?</div>
-                            <div class="en-brown" style="font-size: 20px;">When? (General)</div>
-                            <div class="my-text" style="font-size: 17px; margin: 0;">Bila?</div>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <div class="en-text" style="font-size: 28px; margin-top: 30px;">3. Complete Vocabulary Summary:</div>
+            <!-- 1. 生词总览表 -->
+            <div class="en-text" style="font-size: 28px;">1. Vocabulary Summary:</div>
             <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Senarai Penuh Kosa Kata:</div>
 
-            <table class="summary-table" style="margin-top: 10px;">
+            <table class="summary-table">
                 <thead>
                     <tr>
                         <th style="width: 25%; background-color: #10B981;">Category (Kategori)</th>
@@ -1807,6 +1784,11 @@
                         <td class="my-text" style="font-size: 18px; margin:0;">teh / kopi / teh susu</td>
                     </tr>
                     <tr>
+                        <td class="table-pinyin-black pinyin-font">chīfàn</td>
+                        <td class="en-brown" style="font-size: 19px;">have a meal</td>
+                        <td class="my-text" style="font-size: 18px; margin:0;">makan nasi / makan</td>
+                    </tr>
+                    <tr>
                         <td class="table-pinyin-black pinyin-font">guàngjiē / mǎi dōngxi</td>
                         <td class="en-brown" style="font-size: 19px;">shopping / buy things</td>
                         <td class="my-text" style="font-size: 18px; margin:0;">membeli-belah / beli barang</td>
@@ -1815,6 +1797,151 @@
                         <td class="table-pinyin-black pinyin-font">péngyou 30 suì shēngrì</td>
                         <td class="en-brown" style="font-size: 19px;">friend's 30th birthday</td>
                         <td class="my-text" style="font-size: 18px; margin:0;">hari jadi kawan ke-30</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 2. 问句短语总览表 -->
+            <div class="en-text" style="font-size: 28px; margin-top: 30px;">2. Question Patterns Summary:</div>
+            <div class="my-text" style="font-size: 21px; margin-bottom: 15px;">Jadual Corak Ayat Tanya:</div>
+
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th style="width: 35%; background-color: #0284C7;">Question Target<br><span style="font-size: 15px; font-weight: normal;">Tanya Apa</span></th>
+                        <th style="width: 65%; background-color: #0284C7;">Question Pattern & Meaning<br><span style="font-size: 15px; font-weight: normal;">Frasa Soalan & Maksud</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Date (Tarikh)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-month">jǐ yuè</span> <span class="c-day">jǐ hào</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What date?</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Berapa haribulan?</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Day of Week (Hari)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-week">xīngqī jǐ</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What day of the week?</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Hari apa?</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Clock Time (Jam)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px;"><span class="c-clock">jǐ diǎn</span>?</div>
+                            <div class="en-brown" style="font-size: 20px;">What time? (Clock time)</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Pukul berapa?</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">General Time (Bila)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px; color: #16A34A !important;">shénme shíhou?</div>
+                            <div class="en-brown" style="font-size: 20px;">When? (General)</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Bila?</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="font-weight: 800; color: #0284C7; font-size: 22px;">Action (Aktiviti)</td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font" style="font-size: 32px; color: #B45309 !important;">zuò shénme?</div>
+                            <div class="en-brown" style="font-size: 20px;">Do what?</div>
+                            <div class="my-text" style="font-size: 17px; margin: 0;">Buat apa?</div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 3. 陈述句语序总结表 -->
+            <div class="en-text" style="font-size: 28px; margin-top: 30px;">3. The Magic Sentence Formula Summary Table:</div>
+            
+            <div class="tip-text-small" style="margin-bottom: 15px;">
+                💡 <b>Note on Word Order:</b> 
+                During our dialogues, we practiced giving direct answers. 
+                If you want to build a complete sentence, <b>the time words must come BEFORE the action/verb</b> (unlike in English where time is usually at the end). 
+                <br><i>*Time words can also be placed at the very beginning of the sentence (before WHO).</i>
+            </div>
+            
+            <table class="summary-table">
+                <thead>
+                    <tr>
+                        <th style="width: 12%; background-color: #8B5CF6;">WHO<br><span style="font-size: 15px; font-weight: normal;">Subjek</span></th>
+                        <th style="width: 32%;" class="time-col-header">DATE / DAY<br><span style="font-size: 15px; font-weight: normal;">Tarikh / Hari</span></th>
+                        <th style="width: 16%;" class="time-col-header">TIME PERIOD<br><span style="font-size: 15px; font-weight: normal;">Waktu</span></th>
+                        <th style="width: 16%;" class="time-col-header">CLOCK TIME<br><span style="font-size: 15px; font-weight: normal;">Jam</span></th>
+                        <th style="width: 24%; background-color: #8B5CF6;">ACTION<br><span style="font-size: 15px; font-weight: normal;">Aktiviti</span></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Wǒ</div>
+                            <div class="en-brown" style="font-size: 17px;">I</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">xīngqīsì (zuótiān)</div>
+                            <div class="en-brown" style="font-size: 17px;">Thursday</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">zǎoshang</div>
+                            <div class="en-brown" style="font-size: 17px;">morning</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">bā diǎn bàn</div>
+                            <div class="en-brown" style="font-size: 17px;">8:30</div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">shàngbān.</div>
+                            <div class="en-brown" style="font-size: 17px;">go to work.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Wǒmen</div>
+                            <div class="en-brown" style="font-size: 17px;">We</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">xīngqī wǔ (jīntiān)</div>
+                            <div class="en-brown" style="font-size: 17px;">Friday (Today)</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">zǎoshang</div>
+                            <div class="en-brown" style="font-size: 17px;">morning</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">shíyī diǎn</div>
+                            <div class="en-brown" style="font-size: 17px;">11:00</div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">shàngkè.</div>
+                            <div class="en-brown" style="font-size: 17px;">attend class.</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">Tā</div>
+                            <div class="en-brown" style="font-size: 17px;">He / She</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">xīngqī tiān</div>
+                            <div class="en-brown" style="font-size: 17px;">Sunday</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">wǎnshang</div>
+                            <div class="en-brown" style="font-size: 17px;">night</div>
+                        </td>
+                        <td>
+                            <div class="time-col-pinyin pinyin-font">qī diǎn bàn</div>
+                            <div class="en-brown" style="font-size: 17px;">7:30</div>
+                        </td>
+                        <td>
+                            <div class="table-pinyin-black pinyin-font">qù péngyou shēngrì.</div>
+                            <div class="en-brown" style="font-size: 17px;">go to friend's bday.</div>
+                        </td>
                     </tr>
                 </tbody>
             </table>
